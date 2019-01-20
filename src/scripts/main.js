@@ -11,5 +11,5 @@ import tripList from "./tripList"
 
 //tripEditForm.createAndAppendForm()
 newInterestForm.createAndAppendForm()
-tripList.createTrip()
+tripList.listify()
 //trip.tripBuilder() ??
