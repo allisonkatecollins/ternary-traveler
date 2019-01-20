@@ -27,7 +27,7 @@ const tripCollection = {
     })
   },
   //delete previously stored point of interest by targeting id of the item
-  /* deleteInterest(placeId) {
+  deleteInterest(placeId) {
     return fetch(`http://localhost:8088/trip/${placeId}`, {
       method: "DELETE",
       headers: {
@@ -50,7 +50,7 @@ const tripCollection = {
       },
       body: JSON.stringify(interestToEdit)
     })
-  } */
+  }
 }
 
 export default tripCollection

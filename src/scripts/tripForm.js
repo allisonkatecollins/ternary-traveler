@@ -130,7 +130,9 @@ const newInterestForm = {
 
    //3. call POST method with fetch request to post new object to db
    tripCollection.postNewInterest(newInterest)
-
+   .then(response => {
+     tripList.listify()
+   })
  }
 }
 
