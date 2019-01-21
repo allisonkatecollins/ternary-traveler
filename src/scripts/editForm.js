@@ -1,4 +1,4 @@
-import tripCollection from "./tripList"
+import tripCollection from "./tripCollection"
 import tripList from "./tripList";
 
 const tripEditForm = {
@@ -39,17 +39,25 @@ const tripEditForm = {
     //take new values in input fields and build object for item to be edited
     updateBtn.addEventListener("click", () => {
       let editedInterest = {
+        name: tripObjToEdit.name,
+        description: tripObjToEdit.description,
         cost: interestCostInput.value,
-        review: interestReviewInput.value
+        review: interestReviewInput.value,
+        location: tripObjToEdit.location,
+        placeId: tripObjToEdit.placeId
       }
+
+      console.log(editedInterest)
 
       //make PUT request where I target interest item to edit by specifying the ID in the URL
       //pass object representing interest item with new values as data in the PUT request
       //because the data has been modified, make a GET request to get all items and display them
+      
       tripCollection.putExistingInterest(tripObjToEdit.id, editedInterest)
       .then(response => {
         tripList.listify()
       })
+      console.log(tripObjToEdit)
     })
 
     //pass in ID of the article so I know exactly where to append the edit form
@@ -66,5 +74,4 @@ const tripEditForm = {
     tripItemArticle.appendChild(updateBtn)
   }
 }
-
 export default tripEditForm

@@ -39,7 +39,12 @@ const trip = {
       tripCollection.getAllInterests(placeId)
       .then(response => {
         tripEditForm.createAndAppendForm(articleId, response)
+        console.log(response)
+        response.forEach(element => {
+          tripEditForm.createAndAppendForm(articleId, element)
+        });
       })
+  
     })
 
     //DELETE button
