@@ -47,7 +47,7 @@ const trip = {
     deleteBtn.textContent = "Delete"
     deleteBtn.addEventListener("click", () => {
       //look into window.confirm() functionality
-      alert("Are you sure you want to delete this interest?")
+      if(confirm("Are you sure you want to delete this interest?")) {
       //need a better understanding of line below
       //placeId same var used in fetch calls in tripCollection - is this right?
       let placeId = event.target.parentNode.id.split("--")[1]
@@ -55,6 +55,7 @@ const trip = {
       .then(response => {
         tripList.listify()
       })
+    }
     })
 
     tripArticle.appendChild(tripName)

@@ -70,9 +70,7 @@ const newInterestForm = {
 
    let interestLocationLabel = document.createElement("select")
    interestLocationLabel.textContent = "Location"
-   interestLocationLabel.setAttribute("for", "interest-location")
-   let interestLocationInput = document.createElement("input")
-   interestLocationInput.setAttribute("id", "interest-location")
+   interestLocationLabel.setAttribute("id", "interest-location")
 
    //loop through db cities with forEach
    tripCollection.getAllPlaces()
@@ -81,12 +79,11 @@ const newInterestForm = {
         let optionTag = document.createElement("option")
         optionTag.textContent += `${place.name}`
         optionTag.setAttribute("value", `${place.id}`)
-        interestLocationField.appendChild(optionTag)
+        interestLocationLabel.appendChild(optionTag)
       });
     })
 
     interestLocationField.appendChild(interestLocationLabel)
-    interestLocationField.appendChild(interestLocationInput)
   
 
    //2. create SAVE button and attach event listener
@@ -126,7 +123,7 @@ const newInterestForm = {
      name: inputInterestName,
      description: inputInterestDescription,
      cost: inputInterestCost,
-     location: inputInterestLocation,
+     placeId: inputInterestLocation,
      //location has dropdown with 3 cities from db
      review: inputInterestReview
    }

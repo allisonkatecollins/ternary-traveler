@@ -22,14 +22,16 @@ const tripCollection = {
     return fetch("http://localhost:8088/interests")
     .then(response => response.json())
   }, */
+  
   //POST - add new info to database
-  postNewInterest() {
+  //"interest" = taco
+  postNewInterest(interest) {
     return fetch("http://localhost:8088/interests", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify()
+      body: JSON.stringify(interest)
     })
   },
 
