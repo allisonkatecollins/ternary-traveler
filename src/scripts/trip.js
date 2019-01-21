@@ -2,23 +2,6 @@
 
 //contains DELETE button
 const trip = {
-  // This method takes one argument, which we expect to be an object that represents a food and will have the following structure:
-  // {
-  //  name: ""
-  //  description: ""
-  //  cost: ""
-  //  review: ""
-  //  location: ""
-  // }
-
-  // Given this object, the method will build HTML elements and append them appropriately so that it will look like this:
-  // <article>
-  //   <h3>name value</h3>
-  //   <p>description</p>
-  //   <p>cost</p>
-  //   <p>review</p>
-  //   <p>location</p>
-  // </article>
 
   tripBuilder(tripObject) {
     let tripArticle = document.createElement("article")
@@ -44,6 +27,7 @@ const trip = {
 
     //DELETE button
     //"are you sure?" alert --> YES or NO
+    let deleteBtn = document.createElement("button")
 
     tripArticle.appendChild(tripName)
     tripArticle.appendChild(tripDescription)

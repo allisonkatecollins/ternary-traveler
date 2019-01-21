@@ -11,6 +11,8 @@ const tripCollection = {
     .then(response => response.json())
   },
 
+
+
   //access existing interests in db
   getAllInterests() {
     return fetch("http://localhost:8088/interests")
@@ -26,6 +28,10 @@ const tripCollection = {
       body: JSON.stringify()
     })
   },
+
+
+
+
   //delete previously stored point of interest by targeting id of the item
   deleteInterest(placeId) {
     return fetch(`http://localhost:8088/trip/${placeId}`, {
@@ -35,6 +41,10 @@ const tripCollection = {
       }
     })
   },
+
+
+  
+
   //edit interest - requires 2 fetch calls
   //**don't confuse getInterest with getAllInterests!!**
   getInterest(placeId) {

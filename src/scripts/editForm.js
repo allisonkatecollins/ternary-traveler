@@ -1,5 +1,4 @@
 import tripCollection from "./tripList"
-import foodList from "./tripList"
 import tripList from "./tripList";
 
 const tripEditForm = {
