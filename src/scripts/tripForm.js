@@ -68,23 +68,23 @@ const newInterestForm = {
    //LOCATION
    let interestLocationField = document.createElement("fieldset")
 
-   let interestLocationLabel = document.createElement("label")
+   let interestLocationLabel = document.createElement("select")
    interestLocationLabel.textContent = "Location"
-   interestLocationLabel.setAttribute("for", "interest-location")
-   let interestLocationInput = document.createElement("input")
-   interestLocationInput.setAttribute("id", "interest-location")
-   interestLocationInput.setAttribute("name", "location-review")
-
-   interestLocationField.appendChild(interestLocationLabel)
-   interestLocationField.appendChild(interestLocationInput)
+   interestLocationLabel.setAttribute("id", "interest-location")
 
    //loop through db cities with forEach
-  /*  places.forEach(place => {
-     output += `<select>
-      <option> ${places.name}</option>
-      <select>
-     `
-   }); */
+   tripCollection.getAllPlaces()
+    .then(places => {
+      places.forEach(place => {
+        let optionTag = document.createElement("option")
+        optionTag.textContent += `${place.name}`
+        optionTag.setAttribute("value", `${place.id}`)
+        interestLocationLabel.appendChild(optionTag)
+      });
+    })
+
+    interestLocationField.appendChild(interestLocationLabel)
+  
 
    //2. create SAVE button and attach event listener
    let saveBtn = document.createElement("button")
@@ -116,14 +116,14 @@ const newInterestForm = {
     let inputInterestDescription = document.querySelector("#interest-description").value
     let inputInterestCost = document.querySelector("#interest-cost").value
     let inputInterestReview = document.querySelector("#interest-review").value
-    let inputInterestLocation = document.querySelector("#interest-location").value
+    let inputInterestLocation = parseInt(document.querySelector("#interest-location").value)
 
    //2. create new object with same structure I've been using
    let newInterest = {
      name: inputInterestName,
      description: inputInterestDescription,
      cost: inputInterestCost,
-     location: inputInterestLocation,
+     placeId: inputInterestLocation,
      //location has dropdown with 3 cities from db
      review: inputInterestReview
    }
