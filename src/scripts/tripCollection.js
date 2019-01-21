@@ -5,23 +5,17 @@ const tripCollection = {
   //GET, POST, PUT, DELETE (any others?)
   //GET - access entire database
 
-  //access id of places in db
+  //access id of everything in db
   getAllInterests() {
     return fetch("http://localhost:8088/interests?_expand=place")
     .then(response => response.json())
   },
 
+  //access id of places - needed for location dropdown menu
   getAllPlaces() {
     return fetch("http://localhost:8088/places")
     .then(response => response.json())
   },
-
-
-  //access existing interests in db
- /*  getAllInterests() {
-    return fetch("http://localhost:8088/interests")
-    .then(response => response.json())
-  }, */
   
   //POST - add new info to database
   //"interest" = taco
@@ -34,9 +28,6 @@ const tripCollection = {
       body: JSON.stringify(interest)
     })
   },
-
-
-
 
   //delete previously stored point of interest by targeting id of the item
   deleteInterest(placeId) {
