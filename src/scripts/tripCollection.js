@@ -6,18 +6,22 @@ const tripCollection = {
   //GET - access entire database
 
   //access id of places in db
+  getAllInterests() {
+    return fetch("http://localhost:8088/interests?_expand=place")
+    .then(response => response.json())
+  },
+
   getAllPlaces() {
     return fetch("http://localhost:8088/places")
     .then(response => response.json())
   },
 
 
-
   //access existing interests in db
-  getAllInterests() {
+ /*  getAllInterests() {
     return fetch("http://localhost:8088/interests")
     .then(response => response.json())
-  },
+  }, */
   //POST - add new info to database
   postNewInterest() {
     return fetch("http://localhost:8088/interests", {
@@ -34,7 +38,7 @@ const tripCollection = {
 
   //delete previously stored point of interest by targeting id of the item
   deleteInterest(placeId) {
-    return fetch(`http://localhost:8088/trip/${placeId}`, {
+    return fetch(`http://localhost:8088/interests/${placeId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json"
@@ -48,12 +52,12 @@ const tripCollection = {
   //edit interest - requires 2 fetch calls
   //**don't confuse getInterest with getAllInterests!!**
   getInterest(placeId) {
-    return fetch(`http://localhost:8088/trip/${placeId}`)
+    return fetch(`http://localhost:8088/interests/${placeId}`)
     .then(response => response.json())
   },
   //2 arguments: placeId to identify particular item to edit, interestToEdit to replace existing data
   putExistingInterest(placeId, interestToEdit) {
-    return fetch(`http://localhost:8088/trip/${placeId}`, {
+    return fetch(`http://localhost:8088/interests/${placeId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json"

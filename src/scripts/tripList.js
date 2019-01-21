@@ -30,6 +30,9 @@ const tripList = {
       //refer to HTML element with class "output" & append doc fragment to that element
       //HTML in doc fragment automatically appends to the DOM since it's attached to "output"
       let outputArticle = document.querySelector(".output")
+      while (outputArticle.firstChild) {
+        outputArticle.removeChild(outputArticle.firstChild);
+      }
       outputArticle.appendChild(tripDocFragment)
     })
   }
