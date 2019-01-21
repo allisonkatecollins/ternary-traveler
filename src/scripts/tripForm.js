@@ -49,7 +49,7 @@ const newInterestForm = {
    interestCostInput.setAttribute("id", "interest-cost")
    interestCostInput.setAttribute("name", "interest-cost")
 
-   interesCostField.appendChild(interestCostLabel)
+   interestCostField.appendChild(interestCostLabel)
    interestCostField.appendChild(interestCostInput)
 
    //REVIEW
@@ -66,47 +66,72 @@ const newInterestForm = {
    interestReviewField.appendChild(interestReviewInput)
 
    //LOCATION
-   let interestLocationField = document.createElement
+   let interestLocationField = document.createElement("fieldset")
+
+   let interestLocationLabel = document.createElement("label")
+   interestLocationLabel.textContent = "Location"
+   interestLocationLabel.setAttribute("for", "interest-location")
+   let interestLocationInput = document.createElement("input")
+   interestLocationInput.setAttribute("id", "interest-location")
+   interestLocationInput.setAttribute("name", "location-review")
+
+   interestLocationField.appendChild(interestLocationLabel)
+   interestLocationField.appendChild(interestLocationInput)
 
    //loop through db cities with forEach
-   places.forEach(place => {
-     
-   });
+  /*  places.forEach(place => {
+     output += `<select>
+      <option> ${places.name}</option>
+      <select>
+     `
+   }); */
 
-/*    <select>
- <option value="volvo">Volvo</option>
- <option value="saab">Saab</option>
- <option value="mercedes">Mercedes</option>
- <option value="audi">Audi</option>
-</select>
-
-*/
    //2. create SAVE button and attach event listener
+   let saveBtn = document.createElement("button")
+   saveBtn.textContent = "Add New Interest"
+   saveBtn.setAttribute("class", "interest-save")
+
+   saveBtn.addEventListener("click", this.handleAddNewInterest)
 
    //3. append HTML form to DOM
    //append to "form" element in index.html
+   let tripFormFragment = document.createDocumentFragment()
+   tripFormFragment.appendChild(formHeader)
+   tripFormFragment.appendChild(interestNameField)
+   tripFormFragment.appendChild(interestDescriptionField)
+   tripFormFragment.appendChild(interestCostField)
+   tripFormFragment.appendChild(interestReviewField)
+   tripFormFragment.appendChild(interestLocationField)
+   tripFormFragment.appendChild(saveBtn)
+
+   let formArticle = document.querySelector(".form")
+   formArticle.appendChild(tripFormFragment)
  },
+
  //function that executes when button in form is clicked
  handleAddNewInterest () {
    //1. get user input
    // declare variables as values defined in HTML (with createElement above) using querySelector
+    let inputInterestName = document.querySelector("#interest-name").value
+    let inputInterestDescription = document.querySelector("#interest-description").value
+    let inputInterestCost = document.querySelector("#interest-cost").value
+    let inputInterestReview = document.querySelector("#interest-review").value
+    let inputInterestLocation = document.querySelector("#interest-location").value
 
    //2. create new object with same structure I've been using
    let newInterest = {
-     name: "",
-     description: "",
-     cost: "",
-     location: "",
+     name: inputInterestName,
+     description: inputInterestDescription,
+     cost: inputInterestCost,
+     location: inputInterestLocation,
      //location has dropdown with 3 cities from db
-     review: ""
+     review: inputInterestReview
    }
 
-   //call POST method with fetch request to post new object to db
-   //--this method was defined in tripCollection
+   //3. call POST method with fetch request to post new object to db
    tripCollection.postNewInterest(newInterest)
-
-.then(response => {
-     tripList.createTrip()
+   .then(response => {
+     tripList.listify()
    })
  }
 }

@@ -1,27 +1,7 @@
 //builds HTML and returns it
 
-//contains ADD POINT OF INTEREST button, the form for which is found in tripForm.js
-import newInterestForm from "./tripForm"
-
 //contains DELETE button
 const trip = {
-  // This method takes one argument, which we expect to be an object that represents a food and will have the following structure:
-  // {
-  //  name: ""
-  //  description: ""
-  //  cost: ""
-  //  review: ""
-  //  location: ""
-  // }
-
-  // Given this object, the method will build HTML elements and append them appropriately so that it will look like this:
-  // <article>
-  //   <h3>name value</h3>
-  //   <p>description</p>
-  //   <p>cost</p>
-  //   <p>review</p>
-  //   <p>location</p>
-  // </article>
 
   tripBuilder(tripObject) {
     let tripArticle = document.createElement("article")
@@ -47,22 +27,21 @@ const trip = {
 
     //DELETE button
     //"are you sure?" alert --> YES or NO
+    let deleteBtn = document.createElement("button")
 
     tripArticle.appendChild(tripName)
     tripArticle.appendChild(tripDescription)
     tripArticle.appendChild(tripCost)
     tripArticle.appendChild(tripReview)
-    tripArticle.appendChild(addNewInterestBtn)
-    
-    //Button that pulls up the Add New Interest form
-    let addNewInterestBtn = document.createElement("button")
-    addNewInterestBtn.textContent = "Add New Point of Interest"
-    addNewInterestBtn.addEventListener("click", () => {
-      newInterestForm.createAndAppendForm()
-    })
+    tripArticle.appendChild(tripLocation)
+    tripArticle.appendChild(deleteBtn)
 
-    return tripArticle
+    //create card container for forms
+   let cardContainer = document.querySelector(".card")
+   cardContainer.appendChild(tripArticle)
+
+  return tripArticle
   }
 }
 
-export default trip 
+export default trip

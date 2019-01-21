@@ -4,22 +4,36 @@
 const tripCollection = {
   //GET, POST, PUT, DELETE (any others?)
   //GET - access entire database
+
+  //access id of places in db
+  getAllPlaces() {
+    return fetch("http://localhost:8088/places")
+    .then(response => response.json())
+  },
+
+
+
+  //access existing interests in db
   getAllInterests() {
     return fetch("http://localhost:8088/interests")
     .then(response => response.json())
   },
   //POST - add new info to database
-  postNewInterest(newInterestToSave) {
+  postNewInterest() {
     return fetch("http://localhost:8088/interests", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(newInterestToSave)
+      body: JSON.stringify()
     })
   },
+
+
+
+
   //delete previously stored point of interest by targeting id of the item
-  /* deleteInterest(placeId) {
+  deleteInterest(placeId) {
     return fetch(`http://localhost:8088/trip/${placeId}`, {
       method: "DELETE",
       headers: {
@@ -27,6 +41,10 @@ const tripCollection = {
       }
     })
   },
+
+
+  
+
   //edit interest - requires 2 fetch calls
   //**don't confuse getInterest with getAllInterests!!**
   getInterest(placeId) {
@@ -42,7 +60,7 @@ const tripCollection = {
       },
       body: JSON.stringify(interestToEdit)
     })
-  } */
+  }
 }
 
 export default tripCollection
